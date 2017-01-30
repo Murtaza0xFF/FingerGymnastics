@@ -3,7 +3,9 @@ package com.murtaza.fingertap.views;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Paint;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,7 +41,9 @@ public class MainActivity extends AppCompatActivity implements MainView, TouchEv
     @Inject
     Random random;
 
-    //    @BindView(R.id.main_grid)
+    @Inject
+    Paint paint;
+
     GridLayout gridLayout;
 
     int gridSize;
@@ -124,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements MainView, TouchEv
         if (TextUtils.isDigitsOnly(editText.getText()) && editText.getText().length() != 0) {
             gridSize = Integer.parseInt(editText.getText().toString());
             return (gridSize % 2 == 0 && gridSize > 1);
-        }else{
+        } else {
             return false;
         }
     }
@@ -167,6 +171,11 @@ public class MainActivity extends AppCompatActivity implements MainView, TouchEv
         gridLayout.addView(selection);
         selections.add(selection);
         positions.add(selection.getPosition());
+    }
+
+    @Override
+    public Paint getPaint() {
+        return paint;
     }
 
     public boolean isDeviceSupported(PackageManager packageManager) {
@@ -214,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements MainView, TouchEv
         }
     }
 
-    private void removeLayoutListener(){
+    private void removeLayoutListener() {
         gridLayout.getViewTreeObserver().
             removeOnGlobalLayoutListener(this);
     }
@@ -247,6 +256,7 @@ public class MainActivity extends AppCompatActivity implements MainView, TouchEv
         final AlertDialog dialog = dialogBuilder.create();
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
+
     }
 
     public void selectCell(int object) {

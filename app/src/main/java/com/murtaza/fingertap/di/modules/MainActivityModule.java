@@ -1,6 +1,7 @@
 package com.murtaza.fingertap.di.modules;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.widget.GridLayout;
 
 import com.murtaza.fingertap.di.scopes.ActivityScope;
@@ -30,6 +31,12 @@ public class MainActivityModule {
     @ActivityScope
     public MainPresenter provideMainPresenter(){
         return new MainPresenterImpl(mainView);
+    }
+
+    @Provides
+    @ActivityScope
+    public Paint providesPaint(){
+        return new Paint();
     }
 
 }

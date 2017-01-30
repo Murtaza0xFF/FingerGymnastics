@@ -1,9 +1,5 @@
 package com.murtaza.fingertap.presenters;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.util.Log;
-
 import com.murtaza.fingertap.models.Person;
 import com.murtaza.fingertap.utils.MultiTouchType;
 import com.murtaza.fingertap.views.MainActivity;
@@ -41,7 +37,7 @@ public class MainPresenterImpl implements MainPresenter {
         for (int x = 0; x < gridSize; x++) {
             for (int y = 0; y < gridSize; y++) {
                 int pos = x * gridSize + y;
-                Selection selections = new Selection(x, y, (Context) mainView);
+                Selection selections = new Selection(x, y, mainView);
                 selections.touchListener((TouchEvents) mainView);
                 selections.setPosition(pos);
                 mainView.addView(selections);

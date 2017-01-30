@@ -1,5 +1,7 @@
 package com.murtaza.fingertap.views;
 
+import android.graphics.Paint;
+
 /**
  * Created by murtaza on 30/1/17.
  */
@@ -12,5 +14,7 @@ public interface MainView {
      */
 
     void addView(Selection selection);
+
+    Paint getPaint();
 
 }
