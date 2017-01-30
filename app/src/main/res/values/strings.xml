@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Finger Tap</string>
+    <string name="apologies">Apologies</string>
+    <string name="not_supported">Sorry, your phone supports only two or less multitouch.</string>
+    <string name="ok">OK</string>
+    <string name="invalid_number">Please select an even number greater than or equal to 2</string>
+    <string name="game_over">Game over</string>
+    <string name="first_player">first player</string>
+    <string name="second_player">second player</string>
+    <string name="wins">"wins"</string>
+    <string name="congratulations">Congratulations</string>
+    <string name="draw">It\'s a draw!</string>
+    <string name="play_again_prompt">Would you like to play again?</string>
+    <string name="yes">Yes</string>
+    <string name="quit">Quit</string>
+    <string name="number_of_tiles">Number Of Tiles</string>
+    <string name="example_message">Eg: entering 4 will create a 4 by 4 grid</string>
+</resources>
