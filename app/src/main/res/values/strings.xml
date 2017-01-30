@@ -5,8 +5,8 @@
     <string name="ok">OK</string>
     <string name="invalid_number">Please select an even number greater than or equal to 2</string>
     <string name="game_over">Game over</string>
-    <string name="first_player">first player</string>
-    <string name="second_player">second player</string>
+    <string name="first_player">First player</string>
+    <string name="second_player">Second player</string>
     <string name="wins">"wins"</string>
     <string name="congratulations">Congratulations</string>
     <string name="draw">It\'s a draw!</string>

@@ -8,7 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.EditText;
@@ -25,10 +25,10 @@ import java.util.Random;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainView, TouchEvents, ViewTreeObserver.OnGlobalLayoutListener {
+public class MainActivity extends AppCompatActivity implements MainView, TouchEvents,
+    ViewTreeObserver.OnGlobalLayoutListener {
 
     @Inject
     PackageManager packageManager;
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements MainView, TouchEv
     }
 
     private boolean validateInput(EditText editText) {
-        if (TextUtils.isDigitsOnly(editText.getText())) {
+        if (TextUtils.isDigitsOnly(editText.getText()) && editText.getText().length() != 0) {
             gridSize = Integer.parseInt(editText.getText().toString());
             return (gridSize % 2 == 0 && gridSize > 1);
         }else{
@@ -193,8 +193,8 @@ public class MainActivity extends AppCompatActivity implements MainView, TouchEv
                 }
                 selectCell(nextPlayer);
             } else {
-                showFinalDialog(object == Selection.FIRSTPLAYER ? getString(R.string.first_player) :
-                    getString(R.string.second_player), false);
+                showFinalDialog(object == Selection.FIRSTPLAYER ? getString(R.string.second_player) :
+                    getString(R.string.first_player), false);
             }
         }
     }
@@ -206,12 +206,9 @@ public class MainActivity extends AppCompatActivity implements MainView, TouchEv
             int row = mainPresenter.playerRow(object);
             int column = mainPresenter.playerColumn(object);
             if (selection.getXvar() == row && selection.getYvar() == column) {
-                showFinalDialog(object == Selection.FIRSTPLAYER ? getString(R.string.first_player) :
-                    getString(R.string.second_player), false);
                 touchStatus = false;
-            } else if (touchedSelections.contains(selection)) {
-                touchedSelections.remove(selection);
-                mainPresenter.decrementPlayerCount(object);
+                showFinalDialog(object == Selection.FIRSTPLAYER ? getString(R.string.second_player) :
+                    getString(R.string.first_player), false);
             }
 
         }
@@ -274,23 +271,23 @@ public class MainActivity extends AppCompatActivity implements MainView, TouchEv
 
     @Override
     public void onGlobalLayout() {
-        final int MARGIN = 2;
+        final int marginSize = 2;
 
-        int w = gridLayout.getWidth() / gridSize;
-        int h = gridLayout.getWidth() / gridSize;
+        int width = gridLayout.getWidth() / gridSize;
+        int height = gridLayout.getWidth() / gridSize;
 
         for (int x = 0; x < gridSize; x++) {
             for (int y = 0; y < gridSize; y++) {
                 int pos = x * gridSize + y;
                 GridLayout.LayoutParams params = (GridLayout.LayoutParams)
                     selections.get(pos).getLayoutParams();
-                params.width = w - 2 * MARGIN;
-                params.height = h - 2 * MARGIN;
-                params.setMargins(MARGIN, MARGIN, MARGIN, MARGIN);
+                params.width = width - 2 * marginSize;
+                params.height = height - 2 * marginSize;
+                params.setMargins(marginSize, marginSize, marginSize, marginSize);
                 selections.get(pos).setLayoutParams(params);
-//                Log.d("MainActivity", Integer.toString(pos));
             }
         }
     }
+
 }
 

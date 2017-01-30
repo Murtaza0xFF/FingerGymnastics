@@ -6,7 +6,11 @@ package com.murtaza.fingertap.views;
 
 public interface MainView {
 
-    void addView(Selection selections);
+    /**
+     * Add the selection to the frid, and record the posittions.
+     * @param selection Pass in the selection object, that's been created.
+     */
 
+    void addView(Selection selection);
 
 }

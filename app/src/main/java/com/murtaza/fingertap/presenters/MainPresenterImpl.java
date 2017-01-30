@@ -45,7 +45,6 @@ public class MainPresenterImpl implements MainPresenter {
                 selections.touchListener((TouchEvents) mainView);
                 selections.setPosition(pos);
                 mainView.addView(selections);
-                Log.d("MainActivity", Integer.toString(pos));
             }
         }
     }

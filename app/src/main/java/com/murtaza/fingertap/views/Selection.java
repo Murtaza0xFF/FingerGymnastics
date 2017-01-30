@@ -5,9 +5,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import com.murtaza.fingertap.R;
 
 /**
  * Created by murtaza on 30/1/17.
@@ -24,7 +27,7 @@ public class Selection extends View {
     private TouchEvents touchEvent;
     private int person;
     Paint paint = new Paint();
-    private boolean onRandomGenerated;
+    private boolean colorBool;
 
     public Selection(Context context) {
         this(context, null);
@@ -38,6 +41,7 @@ public class Selection extends View {
         super(context, attrs, defStyle);
 
     }
+
 
     public Selection(int x, int y, Context context) {
         super(context);
@@ -53,16 +57,8 @@ public class Selection extends View {
         return xvar;
     }
 
-    public void setXvar(int x) {
-        xvar = x;
-    }
-
     public int getYvar() {
         return yvar;
-    }
-
-    public void setYvar(int y) {
-        yvar = y;
     }
 
     public void setPosition(int position) {
@@ -82,18 +78,18 @@ public class Selection extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (onRandomGenerated) {
-            paint.setColor(Color.WHITE);
+        if (colorBool) {
+            paint.setColor(ContextCompat.getColor(getContext(), R.color.md_white_1000));
             paint.setTextSize(25);
             paint.setAntiAlias(true);
             paint.setTextAlign(Paint.Align.CENTER);
 
             if (person == FIRSTPLAYER) {
-                canvas.drawColor(Color.RED);
-                canvas.drawText("F1", this.getMeasuredWidth() / 2, this.getMeasuredHeight() / 2, paint);
+                canvas.drawColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+                canvas.drawText("1", this.getMeasuredWidth() / 2, this.getMeasuredHeight() / 2, paint);
             } else {
-                canvas.drawColor(Color.BLUE);
-                canvas.drawText("F2", this.getMeasuredWidth() / 2, this.getMeasuredHeight() / 2, paint);
+                canvas.drawColor(ContextCompat.getColor(getContext(), R.color.md_light_blue_A700));
+                canvas.drawText("2", this.getMeasuredWidth() / 2, this.getMeasuredHeight() / 2, paint);
             }
         } else {
             canvas.drawColor(Color.parseColor("#9acc9a"));
@@ -107,19 +103,15 @@ public class Selection extends View {
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-
                     invalidate();
-
                     if (touchEvent != null) {
                         touchEvent.addItem(this, person);
                     }
-
                     return true;
 
                 case MotionEvent.ACTION_UP:
                     setColor(false);
                     invalidate();
-
                     touchEvent.removeItem(this, person);
                     return true;
 
@@ -128,8 +120,8 @@ public class Selection extends View {
         return false;
     }
 
-    public void setColor(boolean onRandomGenerated) {
-        this.onRandomGenerated = onRandomGenerated;
+    public void setColor(boolean colorBool) {
+        this.colorBool = colorBool;
     }
 
 }
