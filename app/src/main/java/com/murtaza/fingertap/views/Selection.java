@@ -21,13 +21,12 @@ public class Selection extends View {
 
     private int xvar;
     private int yvar;
-    private MainView mainView;
     public static final int FIRSTPLAYER = 1;
     public static final int SECONDPLAYER = 2;
     private int position;
-    Paint paint;
     private TouchEvents touchEvent;
     private int person;
+    Paint paint = new Paint();
     private boolean colorBool;
 
     public Selection(Context context) {
@@ -48,7 +47,6 @@ public class Selection extends View {
         super((Context) mainView);
         xvar = x;
         yvar = y;
-        this.mainView = mainView;
     }
 
     public int getPosition() {
@@ -81,7 +79,6 @@ public class Selection extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         if (colorBool) {
-            paint = mainView.getPaint();
             paint.setColor(ContextCompat.getColor(getContext(), R.color.md_white_1000));
             paint.setTextSize(25);
             paint.setAntiAlias(true);
