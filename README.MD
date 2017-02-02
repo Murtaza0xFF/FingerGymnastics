@@ -17,7 +17,7 @@ The project uses Dagger 2 for injecting dependencies into the classes, and for s
 application scope (singleton), or the activity scope. This is too small a project for scoping to
 have a significant impact, but if a database layer or a network layer were to show up, scoping would
 come in handy to preserve data by decoupling the data layer and using it as a singleton,
-or to to make network calls only when appropriate. But for now, scoping is used just to avoid
+or to make network calls only when appropriate. But for now, scoping is used just to avoid
 repeated creation of expensive objects.
 
 ##Potential Improvements
