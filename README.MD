@@ -14,7 +14,7 @@ in the direction of the presenter. The presenter is totally independent of the A
 for better testability and polymorphism -- just in case another level is to show up.
 
 The project uses Dagger 2 for injecting dependencies into the classes, and for scoping objects to either the
-application scope (singleton), or the activity scope. This is too small of a project for scoping to
+application scope (singleton), or the activity scope. This is too small a project for scoping to
 have a significant impact, but if a database layer or a network layer were to show up, scoping would
 come in handy to preserve data by decoupling the data layer and using it as a singleton,
 or to to make network calls only when appropriate. But for now, scoping is used just to avoid
